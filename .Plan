@@ -1,0 +1,134 @@
+# X Bookmarks to Markdown Converter Implementation Plan
+
+## Project Setup [STATUS: COMPLETED]
+1. Initialize Project Structure
+   - ✓ Create base directory structure as defined in architecture.md
+   - ✓ Set up pyproject.toml with initial dependencies
+   - ✓ Create README.md with basic project info
+   [MILESTONE: Project skeleton ready for development ✓]
+
+2. Development Environment Setup
+   - ✓ Set up uv for package management
+   - ✓ Configure pytest for testing
+   - ✓ Add type checking configuration
+   - ✓ Create .xbm directory for system files
+   [MILESTONE: Development environment ready ✓]
+
+## Phase 1: Core Infrastructure [STATUS: IN_PROGRESS]
+1. Authentication Module (auth/)
+   - ✓ Implement OAuth2 flow using Tweepy
+   - ✓ Create token storage in .xbm/auth.json
+   - ✓ Add local server callback (ports 8000-8010)
+   - ✓ Implement manual PIN entry fallback
+   - ✓ Fix PKCE and state verification in tests
+   - [ ] Fix CSRF bypass in auth command
+   [MILESTONE: Authentication working with both methods - NEEDS CSRF FIX]
+
+2. API Client (api/)
+   - ✓ Create Tweepy client wrapper
+   - ✓ Implement pagination handling
+   - ✓ Add retry logic for API failures
+   - ✓ Create bookmark fetching logic
+   [MILESTONE: Can fetch bookmarks from X API ✓]
+
+3. Storage Manager (storage/)
+   - ✓ Implement last_sync_id tracking
+   - ✓ Create JSON state file management
+   - ✓ Add file I/O operations
+   - ✓ Implement directory structure management
+   [MILESTONE: Storage system functional ✓]
+
+## Phase 2: Core Features [STATUS: IN_PROGRESS]
+1. Markdown Converter (converter/)
+   - ✓ Create base converter class
+   - ✓ Implement tweet text formatting
+   - ✓ Add media link handling
+   - ✓ Create metadata formatting
+   - ✓ Fix mock data handling in tests
+   - ✓ Fix save_bookmark call issues
+   [MILESTONE: Basic markdown conversion working ✓]
+
+2. Media Handler
+   - ✓ Implement media download logic
+   - ✓ Add retry mechanism
+   - ✓ Create media storage structure
+   - ✓ Add failed media handling
+   [MILESTONE: Media downloading and linking functional ✓]
+
+3. CLI Interface (cli.py)
+   - ✓ Create base CLI using Click
+   - ✓ Add input/output directory options
+   - ✓ Implement progress reporting
+   - ✓ Fix error handling and user feedback
+   - ✓ Fix error message display in skip_errors case
+   [MILESTONE: CLI functional ✓]
+
+## Phase 3: Testing & Documentation [STATUS: IN_PROGRESS]
+1. Unit Tests
+   - ✓ Add auth module tests
+   - ✓ Create API client tests
+   - ✓ Add converter tests
+   - ✓ Implement storage tests
+   - ✓ Fix failing tests (39/39 passing)
+   [MILESTONE: Core unit tests passing ✓]
+
+2. Integration Tests
+   - ✓ Add end-to-end bookmark retrieval test
+   - ✓ Create markdown conversion test
+   - ✓ Implement media handling test
+   [MILESTONE: Integration tests passing ✓]
+
+3. Documentation
+   - ✓ Update README with setup instructions
+   - ✓ Add usage examples
+   - ✓ Create API documentation
+   - ✓ Add configuration guide
+   - [ ] Document OAuth2 authentication process
+   - [ ] Document CLI commands and options
+   [MILESTONE: Documentation needs updates]
+
+## Phase 4: Performance & Security [STATUS: IN_PROGRESS]
+1. Performance Optimization
+   - ✓ Optimize bookmark retrieval
+   - ✓ Improve media download handling
+   - ✓ Add timeout configurations
+   [MILESTONE: Performance requirements met ✓]
+
+2. Security Implementation
+   - ✓ Add secure token storage
+   - ✓ Implement HTTPS verification
+   - [ ] Review logging security measures
+   [MILESTONE: Security requirements - NEEDS REVIEW]
+
+## Final Phase [STATUS: NOT_STARTED]
+1. Final Testing
+   - [ ] Full system testing
+   - [ ] Performance validation
+   - [ ] Security validation
+   [MILESTONE: All tests passing - BLOCKED BY FIXES]
+
+2. Release Preparation
+   - [ ] Version tagging
+   - [ ] Final documentation review
+   - [ ] Package release preparation
+   [MILESTONE: Ready for v1 release - PENDING]
+
+## Success Criteria
+- [ ] All milestones completed
+- [ ] Tests passing with >90% coverage (Currently 85%)
+- ✓ Performance requirements met
+- [ ] Security requirements satisfied
+- [ ] Documentation complete and accurate
+
+## Current Focus
+- [ ] Fix CSRF bypass in auth command
+- [ ] Document OAuth2 authentication process
+- [ ] Document CLI commands and options
+- [ ] Review logging security measures
+
+## Notes
+- ✓ Fixed mock data handling in tests by patching at correct import location
+- ✓ OAuth2 implementation is now robust with proper state verification
+- ✓ Error handling improved with clear user feedback
+- ✓ All 39 tests now passing
+

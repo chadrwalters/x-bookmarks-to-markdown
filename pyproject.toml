@@ -1,0 +1,51 @@
+[project]
+name = "xbm"
+version = "0.1.0"
+description = "Convert X (Twitter) bookmarks to markdown files"
+requires-python = ">=3.9"
+dependencies = [
+  "tweepy>=4.14.0",
+  "click>=8.0.0",
+  "keyring>=24.0.0",
+  "aiohttp>=3.8.0",
+]
+
+[project.scripts]
+xbm = "xbm.cli:cli"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0.0",
+  "mypy>=1.0.0",
+  "black>=23.0.0",
+  "isort>=5.0.0",
+  "pytest-asyncio>=0.21.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/xbm"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v"
+markers = ["asyncio: mark test as async/await test"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
